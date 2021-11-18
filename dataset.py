@@ -121,25 +121,26 @@ class Rotate90(object):
 
 ##
 
-
-transform = transforms.Compose([Normalization(mean=0.5, std=0.5), RandomFlip(), ToTensor()])
-
-data_dir='./datasets/'
-dataset_train = Dataset(data_dir=os.path.join(data_dir,'train'), transform = transform)
-
-data = dataset_train.__getitem__(0)
-
-input = data['input'] # 머지 설명이랑 좀 다른데... shape는 똑같은데 난 왜 나오지
-label = data['label']
-
-plt.subplot(121)
-plt.imshow(label.squeeze())
-
-plt.subplot(122)
-plt.imshow(input.squeeze())
-
-plt.show()
-
+# 테스트해보는 부분
+#
+# transform = transforms.Compose([Normalization(mean=0.5, std=0.5), RandomFlip(), ToTensor()])
+#
+# data_dir='./datasets/'
+# dataset_train = Dataset(data_dir=os.path.join(data_dir,'train'), transform = transform)
+#
+# data = dataset_train.__getitem__(0)
+#
+# input = data['input'] # 머지 설명이랑 좀 다른데... shape는 똑같은데 난 왜 나오지
+# label = data['label']
+#
+# plt.subplot(121)
+# plt.imshow(label.squeeze())
+#
+# plt.subplot(122)
+# plt.imshow(input.squeeze())
+#
+# plt.show()
+#
 ##
 
 
