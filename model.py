@@ -1,33 +1,11 @@
-"""
-source from youtube : https://www.youtube.com/watch?v=sSxdQq9CCx0
-
-Unet model img = https://towardsdatascience.com/unet-line-by-line-explanation-9b191c76baf5
-"""
-## 라이브러리 추가하기
 import os
 import numpy as np
 
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
-# 여기에 wandb도 추가를해야곘지??
-
-from torchvision import transforms, datasets
-
-## 트레이닝 파라미터 설정하기
-lr = 1e-3
-batch_size = 4
-num_epoch = 100
-
-data_dir = './datasets'
-ckpt_dir = './checkpoint'
-log_dir = './log'
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 ## 네트워크 구축하기
-class UNet(mm.Module):
+class UNet(nn.Module):
     def __init__(self):
         super(UNet, self).__init__()                # 이건 왜지??
 
@@ -141,12 +119,3 @@ class UNet(mm.Module):
         x = self.fc(dec1_1)
 
         return x
-
-
-
-
-
-
-
-
-
