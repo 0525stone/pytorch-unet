@@ -1,30 +1,14 @@
-"""
-source from youtube : https://www.youtube.com/watch?v=1gMnChpUS9k&list=PLqtXapA2WDqbE6ghoiEJIrmEnndQ7ouys&index=6
-
-data들을 보통 preprocess를 하고 prefix suffix로 구분을 주는게 통상적인 방법인듯
-
-의문
-    왜 numpy로 했을까???
-
-"""
-## 라이브러리 추가하기
 import os
 import numpy as np
-import matplotlib.pyplot as plt
-from PIL import Image
-
 
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
-from torch.utils.tensorboard import SummaryWriter
-
-from torchvision import transforms, datasets
 
 ## 데이터 로더 구현하기
 # data들을 보통 preprocess를 하고 prefix suffix로 구분을 주는게 통상적인 방법인듯
 class Dataset(torch.utils.data.Dataset):
     def __init__(self, data_dir, transform=None):
+        # 우리 데이터셋 불러올때 수정해야하는 부분
         self.data_dir = data_dir
         self.transform = transform
 
@@ -62,9 +46,10 @@ class Dataset(torch.utils.data.Dataset):
             data = self.transform(data)
 
         return data
-# ##
-## 트랜스폼 구현하기 기본적인 것들
 
+
+## 트랜스폼 구현하기 기본적인 것들
+data_dir='./datasets/'
 # numpy  Y, X, CH
 # tensor CH, Y, X
 class ToTensor(object):
@@ -118,31 +103,3 @@ class Rotate90(object):
         data = {'label': label, 'input': input}
 
         return data
-
-##
-
-# 테스트해보는 부분
-#
-# transform = transforms.Compose([Normalization(mean=0.5, std=0.5), RandomFlip(), ToTensor()])
-#
-# data_dir='./datasets/'
-# dataset_train = Dataset(data_dir=os.path.join(data_dir,'train'), transform = transform)
-#
-# data = dataset_train.__getitem__(0)
-#
-# input = data['input'] # 머지 설명이랑 좀 다른데... shape는 똑같은데 난 왜 나오지
-# label = data['label']
-#
-# plt.subplot(121)
-# plt.imshow(label.squeeze())
-#
-# plt.subplot(122)
-# plt.imshow(input.squeeze())
-#
-# plt.show()
-#
-##
-
-
-
-
